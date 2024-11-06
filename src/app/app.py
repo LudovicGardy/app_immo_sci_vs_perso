@@ -33,7 +33,7 @@ def main():
     st.write(f"Loyer annuel payé: **{option2_result['annual_rent']:.2f} €**")
     st.write(f"Dividendes nets reçus de la SCI: **{option2_result['net_dividends_received']:.2f} €**")
     st.write(f"Coût net annuel: **{option2_result['net_annual_cost']:.2f} €**")
-    st.write(f"Coût total sur {years} ans: **{option2_result['total_cost_over_years']:.2f} €**")
+    st.write(f"Coût total des loyers sur {years} ans: **{option2_result['total_cost_over_years']:.2f} €**")
     
     st.write("---")
     
