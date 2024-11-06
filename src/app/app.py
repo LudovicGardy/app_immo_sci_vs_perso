@@ -12,8 +12,8 @@ def main():
     property_price = st.sidebar.number_input("Prix du bien immobilier (€)", value=300000, step=10000)
     dividend_tax_rate = st.sidebar.number_input("Taux d'imposition sur les dividendes (%)", value=30.0, step=0.1) / 100
     corporate_tax_rate = st.sidebar.number_input("Taux d'impôt sur les sociétés (%)", value=25.0, step=0.1) / 100
-    rent_per_month = st.sidebar.number_input("Loyer mensuel (€)", value=500, step=50)
-    years = st.sidebar.number_input("Période d'analyse (années)", value=10, step=1)
+    rent_per_month = st.sidebar.number_input("Loyer mensuel (€)", value=700, step=50)
+    years = st.sidebar.number_input("Période d'analyse (années)", value=20, step=1)
 
     # Calculs
     option1 = PersonalPurchase(property_price, dividend_tax_rate)
