@@ -32,7 +32,7 @@ def main():
     option2_result = option2.calculate()
 
 
-    tab1, tab2 = st.tabs(["Calculs", "Plots"])
+    tab1, tab2 = st.tabs(["📐 Calculs", "📊 Plots"])
 
     with tab1:
         # Affichage des résultats
@@ -65,7 +65,9 @@ def main():
                 f"📍Coût net annuel: **{option2_result['net_annual_cost']:.2f} €**"
                 )
             st.write(
-                f"📍 Coût total des loyers sur {years} ans: :red[**{option2_result['total_cost_over_years']:.2f} €**]"
+                f"""📍 Coût total sur {years} ans: :red[**{option2_result['total_cost_over_years']:.2f} €**] 
+                [loyers: {option2_result['rent_cost_over_years']}, cout inital: 
+                {option2_result['initial_cost_holding_sci']}]"""
             )
             st.caption(f"""Notez que le coût de l'IS pourra ici être légèrement inférieur à celui de l'option 1, 
                     car on déduit les salaires versés aux associés. Le montant de l'IS sera le même dans 

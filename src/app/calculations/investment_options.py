@@ -81,9 +81,12 @@ class SCIInvestment(InvestmentOption):
         net_dividends_received = sci_profit_after_tax * (1 - self.dividend_tax_rate)
         net_annual_cost = annual_rent - net_dividends_received
         total_cost_over_years = net_annual_cost * self.years
+        initial_cost_holding_sci = 10000.0
         return {
+            "initial_cost_holding_sci": initial_cost_holding_sci,
             "annual_rent": annual_rent,
             "net_dividends_received": net_dividends_received,
             "net_annual_cost": net_annual_cost,
-            "total_cost_over_years": total_cost_over_years,
+            "rent_cost_over_years": total_cost_over_years,
+            "total_cost_over_years": total_cost_over_years + initial_cost_holding_sci,
         }
