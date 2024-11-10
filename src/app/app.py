@@ -31,38 +31,59 @@ def main():
     )
     option2_result = option2.calculate()
 
-    # Affichage des résultats
-    st.write("## Option 1: Achat personnel avec dividendes d'une SASU")
-    st.write("### Société d'exploitation: SASU")
-    with st.container(border=True):
-        st.write(
-            f"Montant brut de dividendes nécessaire: **{option1_result['gross_dividends_needed']:.2f} €**"
-        )
-        st.write(
-            f"Flat tax payée sur les dividendes: **{option1_result['flat_tax_paid']:.2f} €**"
-        )
-        st.caption(f"""Notez que le chiffre d'affaires nécessaire pour atteindre les dividendes 
-                désirés de {option1_result['gross_dividends_needed']:.2f} € est de: 
-                {option1_result['CA_required']:.2f} €, avec un IS payé 
-                de: {option1_result['IS_paid']:.2f} €.""")
 
-    st.write("---")
+    tab1, tab2 = st.tabs(["Calculs", "Plots"])
 
-    st.write("## Option 2: Achat professionnel via holding + SCI à l'IS")
-    st.write("### Société d'exploitation: EURL")
-    with st.container(border=True):
-        st.write(f"Loyer annuel payé: **{option2_result['annual_rent']:.2f} €**")
-        st.write(
-            f"Dividendes nets reçus de la SCI: **{option2_result['net_dividends_received']:.2f} €**"
+    with tab1:
+        # Affichage des résultats
+        st.write("## 1️⃣ Achat personnel avec dividendes d'une SASU")
+        st.write("### 📃 Société d'exploitation: SASU")
+        with st.container(border=True):
+            st.write(
+                f"📍 Montant brut de dividendes nécessaire: **{option1_result['gross_dividends_needed']:.2f} €**"
+            )
+            st.write(
+                f"📍 Flat tax payée sur les dividendes: :red[**{option1_result['flat_tax_paid']:.2f} €**]"
+            )
+            st.caption(f"""Notez que le chiffre d'affaires nécessaire pour atteindre les dividendes 
+                    désirés de {option1_result['gross_dividends_needed']:.2f} € est de: 
+                    {option1_result['CA_required']:.2f} €, avec un IS payé 
+                    de: {option1_result['IS_paid']:.2f} €.""")
+
+        st.write("---")
+
+        st.write("## 2️⃣ Achat professionnel via holding + SCI à l'IS")
+        st.write("### 📃 Société d'exploitation: EURL")
+        with st.container(border=True):
+            st.write(
+                f"📍 Loyer annuel payé: **{option2_result['annual_rent']:.2f} €**"
+                )
+            st.write(
+                f"📍 Dividendes nets reçus de la SCI: **{option2_result['net_dividends_received']:.2f} €**"
+            )
+            st.write(
+                f"📍Coût net annuel: **{option2_result['net_annual_cost']:.2f} €**"
+                )
+            st.write(
+                f"📍 Coût total des loyers sur {years} ans: :red[**{option2_result['total_cost_over_years']:.2f} €**]"
+            )
+            st.caption(f"""Notez que le coût de l'IS pourra ici être légèrement inférieur à celui de l'option 1, 
+                    car on déduit les salaires versés aux associés. Le montant de l'IS sera le même dans 
+                    les deux cas si le salaire est nul ou identique dans les deux options. Sachant
+                    que par contre, le taux de charges sur les salaires est plus avantageux en EURL.""")
+
+    with tab2:
+
+        # Visualisations avec Plotly
+        st.write("## Comparaison des coûts totaux")
+        fig1 = plot_total_costs(
+            option1_result["flat_tax_paid"], option2_result["total_cost_over_years"]
         )
-        st.write(f"Coût net annuel: **{option2_result['net_annual_cost']:.2f} €**")
-        st.write(
-            f"Coût total des loyers sur {years} ans: **{option2_result['total_cost_over_years']:.2f} €**"
-        )
-        st.caption(f"""Notez que le coût de l'IS pourra ici être légèrement inférieur à celui de l'option 1, 
-                   car on déduit les salaires versés aux associés. Le montant de l'IS sera le même dans 
-                   les deux cas si le salaire est nul ou identique dans les deux options. Sachant
-                   que par contre, le taux de charges sur les salaires est plus avantageux en EURL.""")
+        st.plotly_chart(fig1, use_container_width=True)
+
+        st.write("## Évolution du coût net annuel sur les années (Option 2)")
+        fig2 = plot_annual_costs(int(years), option2_result["net_annual_cost"])
+        st.plotly_chart(fig2, use_container_width=True)
 
     st.write("---")
 
@@ -71,14 +92,3 @@ def main():
     )
 
     st.write("---")
-
-    # Visualisations avec Plotly
-    st.write("## Comparaison des coûts totaux")
-    fig1 = plot_total_costs(
-        option1_result["flat_tax_paid"], option2_result["total_cost_over_years"]
-    )
-    st.plotly_chart(fig1, use_container_width=True)
-
-    st.write("## Évolution du coût net annuel sur les années (Option 2)")
-    fig2 = plot_annual_costs(int(years), option2_result["net_annual_cost"])
-    st.plotly_chart(fig2, use_container_width=True)
