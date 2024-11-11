@@ -1,10 +1,10 @@
 # The Game Of Life
 
 ## 📄 Overview
-🏡 Cette application compare deux options d'investissement pour l'achat d'un bien immobilier :
+🏡 Cette application compare deux options d'investissement pour l'achat d'un bien immobilier utilisé comme résidence principale :
 
-1. **Achat personnel avec dividendes.**
-2. **Achat via holding et SCI à l'IS.**
+1. **Achat personnel avec les dividendes d'une SASU à l'IS.**
+2. **Achat via holding et SCI à l'IS, avec une SASU à l'IS comme société d'exploitation .**
 
 ### Fonctionnalités
 
@@ -14,7 +14,7 @@
 
 🌐 Access the app and start your exploration now at [@Not implemented yet](https://wikipedia.com).
 
-<!-- ![Image1](images/image1.png) -->
+![Image1](images/image1.png)
 
 ## Prerequisites
 
