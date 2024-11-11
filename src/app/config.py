@@ -74,8 +74,8 @@ def page_config() -> dict[str, Any]:
     toml_config = load_toml_config(".streamlit/config.toml")
 
     page_dict = {
-        "page_title": toml_config.get("page_title", "Dividendes SASU vs SCI"),
-        "sidebar_title": f"# {toml_config.get('sidebar_title', 'Dividendes SASU vs SCI')}",
+        "page_title": toml_config.get("page_title", "SCI strategy"),
+        "sidebar_title": f"# {toml_config.get('sidebar_title', 'SCI strategy')}",
         "base": toml_config.get("base", "dark"),
         "page_icon": f'{env_variables.get("AWS_S3_URL", "")}/Sotis_AI_pure_darkbg_240px.ico',
         "page_logo": f'{env_variables.get("AWS_S3_URL", "")}/Sotis_AI_pure_darkbg_240px.png',
