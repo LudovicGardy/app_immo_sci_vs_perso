@@ -11,11 +11,11 @@ class Sidebar:
 
         st.sidebar.header("Paramètres")
         self.property_price = st.sidebar.number_input(
-            "Prix du bien immobilier (€)", value=300000, step=10000
+            "Prix du bien immobilier (€)", value=200000, step=10000
         )
         self.dividend_tax_rate = (
             st.sidebar.number_input(
-                "Taux d'imposition sur les dividendes (%)", value=30.0, step=1.0
+                "Montant de la flax tax (%)", value=30.0, step=1.0
             ) / 100
         )
         self.rent_per_month = st.sidebar.number_input("Loyer mensuel (€)", value=700, step=50)
