@@ -1,4 +1,4 @@
-# The Game Of Life
+# Immobilier : Stratégie d'achat en tant que président d'une société
 
 ## 📄 Overview
 🏡 Cette application compare deux options d'investissement pour l'achat d'un bien immobilier utilisé comme résidence principale :
