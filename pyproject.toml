@@ -6,7 +6,7 @@ authors = ["Ludovic Gardy <ludovic.gardy@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.11"
 plotly = "^5.24.1"
 streamlit = "^1.40.0"
 matplotlib = "^3.9.2"
