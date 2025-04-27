@@ -16,159 +16,77 @@
 
 ![Image1](images/image1.0.png)
 
-## Prerequisites
+---
 
-- **Anaconda or Miniconda**: For easy environment management (optional)
-- **Docker** (optional): To run the app in a containerized setup
-- **Python 3.12**
+## ⚙️ Setup & Usage
 
-## ⚙️ Installation and Setup
+You can run the application in two ways:
 
-This project uses **Poetry** for dependency management, which offers an option to create virtual environments directly. You have two choices to set up your environment:
+- **Locally using `uv`**
+- **Using Docker Compose**
 
-### Option 1: Using Poetry to Create and Manage the Virtual Environment
+### 🔧 Option 1 — Run Locally with `uv`
 
-Poetry can handle the creation and activation of a virtual environment automatically, without needing Conda or other virtual environment tools.
+> `uv` is a fast and modern Python tool that handles virtual environments and dependencies via `pyproject.toml`.
 
-#### Steps
+1. **Install `uv`** (if not already installed)  
+   ```bash
+   curl -Ls https://astral.sh/uv/install.sh | sh
+   ```
 
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/LudovicGardy/the_project_name
-    cd the_project_name
-    ```
+2. **Clone the repository**  
+   ```bash
+   git clone https://github.com/LudovicGardy/app_name
+   cd app_folder/
+   ```
 
-2. **Install Dependencies and Create the Environment**:
-   - Run the following command to let `poetry` create an isolated environment and install dependencies directly:
+3. **Create and activate the environment**  
+   ```bash
+   uv venv
+   ```
+
+   - On **macOS/Linux**:
      ```bash
-     poetry install --no-root
+     source .venv/bin/activate
      ```
 
-3. **Activate the Environment**:
-   - Poetry automatically creates a virtual environment, but it may not activate it by default. Use the following command to activate it:
-     ```bash
-     poetry shell
+   - On **Windows** (PowerShell):
+     ```powershell
+     .venv\Scripts\Activate.ps1
      ```
 
-4. **Run the Application**:
+4. **(Optional) If the virtual environment doesn't behave properly**
+
+   Sometimes, on macOS in particular, the environment might be missing some tooling (like `pip`). You can try the following fixes:
+
+   ```bash
+   .venv/bin/python -m ensurepip --upgrade
+   .venv/bin/python -m pip install --upgrade pip
+   # Optional: Only if you need to use Jupyter notebooks
+   .venv/bin/python -m pip install ipykernel -U --force-reinstall
+   ```
+
+5. **Launch the app**  
    ```bash
    streamlit run main.py
    ```
 
-#### Note on Poetry-managed Environments
+### 🐳 Option 2 — Run with Docker Compose
 
-Using `poetry install` to create and activate an environment directly is a streamlined approach, making Conda unnecessary. This can be ideal if you want a simple, Python-only virtual environment managed by `poetry`.
+1. **Make sure Docker and Docker Compose are installed and running**
 
----
-
-### Option 2: Using Conda for Virtual Environment Management
-
-If you prefer using Conda, follow these steps:
-
-#### Steps
-
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/LudovicGardy/the_project_name
-    cd the_project_name
-    ```
-
-2. **Create and Activate the Conda Environment**:
-   - **Using Conda** (recommended):
-       ```bash
-       conda create -n myenv python=3.11
-       conda activate myenv
-       ```
-
-3. **Install Dependencies with Poetry**:
-   - Once the environment is active, install dependencies within it:
-     ```bash
-     poetry install --no-root
-     ```
-
-4. **Run the Application**:
+2. **Go to the project directory**
    ```bash
-   streamlit run main.py
+   cd path/to/app_folder
    ```
 
----
-
-### Option 3: Run the App with Docker
-
-If you prefer to run the application in a containerized setup, use Docker.
-
-#### Steps
-
-1. **Prepare Docker environment**
-    - Ensure Docker is installed and running on your system.
-
-2. **Navigate to project directory**
-    - For multiple containers:
-        ```bash
-        cd [path-to-app-folder-containing-docker-compose.yml]
-        ```
-    - For a single container:
-        ```bash
-        cd [path-to-app-folder-containing-Dockerfile]
-        ```
-
-3. **Build the image (if does not already exit)**
-    - For multiple containers:
-        ```bash
-        docker-compose up --build
-        ```
-    - For a single container:
-        ```bash
-        docker build -t my-app-title .
-        ```
-
-4. **Run the containers**
-    - For multiple containers:
-        ```bash
-        docker run -p 8501:8501 my-app-title
-        ```
-    - The application will be accessible at `http://localhost:8501`.
-
-5. **Other notes**
-    - ⚠️ If you encounter issues with `pymssql`, adjust its version in `requirements.txt` or remove it before building the Docker image.
-    - ⚠️ If you encounter issues with `pyspark`, you might need to uninstall and reinstall it. Additionally, ensure that Java is installed and properly configured on your system, as `pyspark` depends on Java. You can install Java by following the instructions on the [official Java website](https://www.java.com/en/download/help/download_options.html). Make sure to set the `JAVA_HOME` environment variable to point to your Java installation directory.
-
----
-
-## 🧪 Running Unit Tests
-
-Poetry can also manage unit tests to help you verify that the application functions as expected. This project uses **pytest** for testing.
-
-### Setting Up and Running Tests
-
-1. **Add Testing Dependencies**:
-
-   If `pytest` and other test dependencies are not yet added, include them using Poetry:
+3. **Build and start the app**
    ```bash
-   poetry add --dev pytest
+   docker-compose up --build
    ```
 
-2. **Writing Tests**:
-
-   - Place your test files in a `tests` directory at the root of the project.
-   - Name your test files following the pattern `test_*.py`.
-
-3. **Running Tests**:
-
-   To run tests within the Poetry environment, use:
-   ```bash
-   poetry run pytest
-   ```
-
-   Alternatively, if you are in an activated Poetry shell (`poetry shell`), you can simply run:
-   ```bash
-   pytest
-   ```
-
-4. **Viewing Test Results**:
-
-   - Test results will appear in the terminal, with a summary of passed, failed, and skipped tests.
-   - Use `pytest -v` for more detailed output.
+4. **Access the app**
+   Open your browser at: [http://localhost:8501](http://localhost:8501)
 
 ---
 
