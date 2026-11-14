@@ -1,0 +1,12 @@
+# Local run on the Mac. Host port from Apps/__ports_inventory.csv (slot 58), bound to
+# 127.0.0.1 and written here, never as ${VAR}.
+name: app_immo_sci_vs_perso
+
+services:
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:8501:8501"
+    environment:
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
