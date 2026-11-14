@@ -20,6 +20,8 @@
 
 ## ⚙️ Setup & Usage
 
+First copy `.env.example` to `.env` and fill in the values (the `.env` file is git-ignored and never enters the Docker image: Compose passes it to the container).
+
 You can run the application in two ways:
 
 - **Locally using `uv`**
